@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using phonebook_core.Interfaces;
 using phonebook_infrastructure;
+using phonebook_infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PhoneBookContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped(typeof(IRepository<>), (typeof(Repository<>)));
 
 var app = builder.Build();
 
