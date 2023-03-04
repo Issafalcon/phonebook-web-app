@@ -41,7 +41,7 @@ namespace phonebook_spa.tests
             var controller = new PhoneBookController(mockLogger.Object, mockRepo.Object);
 
             // Act
-            var actionResult = await controller.GetAll();
+            var actionResult = await controller.GetAllAsync();
             var result = actionResult.Result as OkObjectResult;
 
             // Assert

@@ -27,5 +27,13 @@ namespace phonebook_infrastructure.DataAccess
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), specification);
         }
+
+        public async Task<T> AddAsync(T entity)
+        {
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
+        }
     }
 }
