@@ -11,7 +11,7 @@
     "phonebook_spa": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5011",
+      "applicationUrl": "https://localhost:7118;http://localhost:5011",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"

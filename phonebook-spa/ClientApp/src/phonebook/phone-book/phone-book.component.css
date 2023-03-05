@@ -1,0 +1,32 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.top-bar {
+  font-size: 2rem;
+  padding: 3rem;
+}
+
+.top-bar-icon {
+  transform: scale(3);
+}
+
+.top-bar-title {
+  padding-left: 2rem;
+}
+
+.sub-bar {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.contact-card {
+  margin-bottom: 5px;
+  width: 80%;
+}
+
+.contacts-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
