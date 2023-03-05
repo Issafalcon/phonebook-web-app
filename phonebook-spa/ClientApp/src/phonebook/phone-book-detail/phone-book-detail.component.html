@@ -2,17 +2,21 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>First Name</mat-label>
-    <input matInput [(ngModel)]="data.firstName" />
+    <input matInput [(ngModel)]="data.entry.firstName" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Last Name</mat-label>
-    <input matInput [(ngModel)]="data.lastName" />
+    <input matInput [(ngModel)]="data.entry.lastName" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Phone Number</mat-label>
-    <input matInput [(ngModel)]="data.phoneNumber" />
+    <input
+      matInput
+      placeholder="Format: 555-000-2345"
+      [(ngModel)]="data.entry.phoneNumber"
+    />
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

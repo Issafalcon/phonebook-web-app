@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace phonebook_spa.Models
 {
-    public class CreatePhoneBookEntryRequest
+    public class PhoneBookEntryRequest
     {
         /// <summary>
         /// Person first name

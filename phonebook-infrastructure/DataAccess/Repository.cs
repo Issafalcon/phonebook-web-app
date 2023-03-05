@@ -4,7 +4,7 @@ using phonebook_core.Specifications;
 
 namespace phonebook_infrastructure.DataAccess
 {
-    public class Repository<T> : IRepository<T> where T : class, IDisposable
+    public class Repository<T> : IDisposable, IRepository<T> where T : class
     {
         protected readonly PhoneBookContext _context;
 
@@ -20,7 +20,7 @@ namespace phonebook_infrastructure.DataAccess
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _context.Set<T>().FindAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public IEnumerable<T> FindWithSpecificationPattern(ISpecification<T> specification = null)
@@ -34,6 +34,18 @@ namespace phonebook_infrastructure.DataAccess
             await _context.SaveChangesAsync();
 
             return entity;
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         private bool disposed = false;
@@ -54,6 +66,6 @@ namespace phonebook_infrastructure.DataAccess
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
+        }  
     }
 }

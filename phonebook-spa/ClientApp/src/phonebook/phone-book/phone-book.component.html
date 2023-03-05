@@ -11,7 +11,7 @@
 
 <mat-toolbar>
   <mat-toolbar-row class="sub-bar">
-    <span>Contacts</span>
+    <span class="sub-bar-title">Contacts</span>
     <span class="example-spacer"></span>
     <button mat-raised-button color="primary" (click)="onAddContact()">
       <mat-icon>add</mat-icon>Add Contact
@@ -20,13 +20,40 @@
 </mat-toolbar>
 
 <br />
-<div class="contacts-list" *ngFor="let entry of entries">
+
+<div class="search-bar">
+  <mat-form-field appearance="fill" class="search-form">
+    <span matPrefix> </span>
+    <input
+      #searchInput
+      matInput
+      placeholder="Search for contacts by last name..."
+      name="search"
+      [(ngModel)]="search"
+    />
+    <span matSuffix mat-button><mat-icon>search</mat-icon></span>
+  </mat-form-field>
+</div>
+
+<br />
+
+<div
+  class="contacts-list"
+  *ngFor="let entry of filteredEntries; trackBy: trackByItems"
+>
   <mat-card class="contact-card">
     <mat-card-title>{{ entry.firstName }} {{ entry.lastName }} </mat-card-title>
-    <mat-card-subtitle>{{ entry.phoneNumber }}</mat-card-subtitle>
+    <mat-card-subtitle class="contact-number">
+      <mat-icon>call</mat-icon>
+      {{ entry.phoneNumber }}</mat-card-subtitle
+    >
     <mat-card-actions align="end">
-      <button mat-button color="primary"><mat-icon>edit</mat-icon></button>
-      <button mat-button color="warn"><mat-icon>delete</mat-icon></button>
+      <button mat-button color="primary" (click)="onEditContact(entry)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button color="warn" (click)="onDeleteContact(entry.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

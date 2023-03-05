@@ -14,7 +14,7 @@ export class PhonebookService {
   ) { }
 
   getEntries(): Observable<PhoneBookEntry[]> {
-    return this.http.get<PhoneBookEntry[]>(this.baseUrl + 'phonebook').pipe(
+    return this.http.get<PhoneBookEntry[]>(`${this.baseUrl}phonebook`).pipe(
       catchError(er => { console.error(er); return EMPTY })
     );
   }
@@ -25,7 +25,19 @@ export class PhonebookService {
         'Content-Type': 'application/json',
       })
     };
-    return this.http.post<PhoneBookEntry>(this.baseUrl + 'phonebook', entry, httpOptions).pipe(
+    return this.http.post<PhoneBookEntry>(`${this.baseUrl}phonebook`, entry, httpOptions).pipe(
+      catchError(er => { console.error(er); return EMPTY })
+    )
+  }
+
+  deleteEntryById(id: number): Observable<void | Object> {
+    return this.http.delete(`${this.baseUrl}phonebook?id=${id}`).pipe(
+      catchError(er => { console.error(er); return EMPTY })
+    )
+  }
+
+  updateEntryById(entry: PhoneBookEntry): Observable<void | Object> {
+    return this.http.put(`${this.baseUrl}phonebook?id=${entry.id}`, entry).pipe(
       catchError(er => { console.error(er); return EMPTY })
     )
   }

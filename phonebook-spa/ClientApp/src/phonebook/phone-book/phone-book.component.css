@@ -20,6 +20,10 @@
   padding-right: 10%;
 }
 
+.sub-bar-title {
+  font-size: 1.5rem;
+}
+
 .contact-card {
   margin-bottom: 5px;
   width: 80%;
@@ -29,4 +33,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.contact-number {
+  padding-top: 0.2rem;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form {
+  width: 80%;
 }

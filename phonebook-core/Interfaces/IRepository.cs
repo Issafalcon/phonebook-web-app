@@ -8,5 +8,7 @@ namespace phonebook_core.Interfaces
         Task<List<T>> GetAllAsync();
         IEnumerable<T> FindWithSpecificationPattern(ISpecification<T> specification = null);
         Task<T> AddAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task UpdateAsync(T entity);
     }
 }

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PhoneBookEntry } from '../models/phoneBookEntry';
+import { PhoneBookDialogData } from '../models/phoneBookDialogData';
 import { PhonebookService } from '../phonebook.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class PhoneBookDetailComponent {
 
   constructor(
     public dialogRef: MatDialogRef<PhoneBookDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PhoneBookEntry,
+    @Inject(MAT_DIALOG_DATA) public data: PhoneBookDialogData,
     private readonly phonebookService: PhonebookService,
 
   ) { }
@@ -22,6 +22,10 @@ export class PhoneBookDetailComponent {
   }
 
   onSave(): void {
-    this.phonebookService.createEntry(this.data).subscribe(_ => this.dialogRef.close());
+    if (this.data.isEdit) {
+      this.phonebookService.updateEntryById(this.data.entry).subscribe(_ => this.dialogRef.close());
+    } else {
+      this.phonebookService.createEntry(this.data.entry).subscribe(_ => this.dialogRef.close());
+    }
   }
 }
