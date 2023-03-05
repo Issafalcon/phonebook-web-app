@@ -4,7 +4,7 @@ using phonebook_core.Specifications;
 
 namespace phonebook_infrastructure.DataAccess
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class, IDisposable
     {
         protected readonly PhoneBookContext _context;
 
@@ -34,6 +34,26 @@ namespace phonebook_infrastructure.DataAccess
             await _context.SaveChangesAsync();
 
             return entity;
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
